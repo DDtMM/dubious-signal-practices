@@ -7,6 +7,7 @@ import { ChangeDetectionStrategy, Component, effect, signal } from '@angular/cor
   template: `
 <div class="prose-base">
   <h2>Set a Signal Inside an Async Inside an Effect</h2>
+  <div><a class="link link-neutral" href="https://github.com/DDtMM/dubious-signal-practices/blob/master/src/app/examples/set-signal-inside-async.component.ts">View Source</a></div>
   <p>
     You can't set a writable signal inside of an effect unless you specify <i>allowSignalWrites</i>,
     or if you just wrap it in a <i>setTimeout</i>.  I guess this is okay.

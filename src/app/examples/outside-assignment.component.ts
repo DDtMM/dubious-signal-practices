@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
+import { getRandomToDoItem } from './random-to-do-utilities';
 
 @Component({
   selector: 'app-outside-assignment',
@@ -7,6 +8,7 @@ import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/c
   template: `
 <div class="prose-base">
   <h2>Using Variables Outside the Scope of a Computed Signal</h2>
+  <div><a class="link link-neutral" href="https://github.com/DDtMM/dubious-signal-practices/blob/master/src/app/examples/outside-assignment.component.ts">View Source</a></div>
   <p>
     You might think it's a good idea to use variables defined outside of a computed signal or effect,
     but be careful.  A computed signal is lazily evaluated and an effect depends on change detection
@@ -23,13 +25,12 @@ import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/c
   <div class="shadow-md">
     <div class="card-body">
       <div class="card-title">All To-Dos: (I hope this isn't half of them)</div>
-      <div class="grid grid-cols-4">
+      <div class="flex flex-row flex-wrap gap-x-4 gap-y-2">
         @for (todo of allToDos(); track $index) {
-          <span>{{todo}}</span>
+          <span class="badge badge-lg badge-secondary">{{todo}}</span>
         }
       </div>
     </div>
-
   </div>
 
 </div>
@@ -37,6 +38,7 @@ import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/c
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OutsideAssignmentComponent {
+
   // there is no concept of a reducer in computed signals, so I need this variable here to keep track of changes.
   private toDoHistory: string[] = [];
 
@@ -44,12 +46,8 @@ export class OutsideAssignmentComponent {
   readonly allToDos = computed(() => {
     this.toDoHistory = this.nextToDo() ? [...this.toDoHistory, this.nextToDo()] : this.toDoHistory;
     return this.toDoHistory;
-  })
+  });
   addToDo() {
-    const verbs = ['get', 'eat', 'make', 'sit on', 'play with', 'sing about'];
-    const targets = ['dog', 'friends', 'hamburger', 'cat', 'mouse', 'computer', 'strangers'];
-    const verb = verbs[Math.floor(Math.random() * verbs.length)];
-    const target = targets[Math.floor(Math.random() * targets.length)];
-    this.nextToDo.set(`${verb} ${target}`);
+    this.nextToDo.set(getRandomToDoItem());
   }
 }

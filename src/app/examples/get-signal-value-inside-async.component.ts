@@ -7,6 +7,7 @@ import { ChangeDetectionStrategy, Component, effect, signal } from '@angular/cor
   template: `
 <div class="prose-base">
   <h2>Get a Signal Value Inside Async Function from Effect</h2>
+  <div><a class="link link-neutral" href="https://github.com/DDtMM/dubious-signal-practices/blob/master/src/app/examples/get-signal-value-inside-async.component.ts">View Source</a></div>
   <p>
     Updating the signal, should trigger the effect and show a value in the console, right?
     What's fun, is that this works once, so you think it'll work again.

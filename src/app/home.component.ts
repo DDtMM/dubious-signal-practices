@@ -1,19 +1,19 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { routes } from './app.routes';
-import { Route, RouterLink, RouterOutlet } from '@angular/router';
+import { exampleRoutes, routes } from './app.routes';
+import { Route, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterLink, RouterOutlet],
+  imports: [RouterLink, RouterLinkActive, RouterOutlet],
   template: `
-<div class="flex flex-row gap-3 min-h-full">
-  <ul class="menu bg-base-200 w-56 mw-56 rounded-br-lg flex-shrink-0 flex-nowrap mb-3">
+<div class="flex flex-row min-h-full">
+  <ul class="menu bg-base-200 w-56 mw-56 rounded-br-lg flex-shrink-0 flex-nowrap mb-3 gap-1 hidden sm:flex">
     @for (example of examples; track example.path) {
-      <li><a [routerLink]="[example.path]">{{example.title}}</a></li>
+      <li><a [routerLink]="[example.path]" routerLinkActive="active">{{example.title}}</a></li>
     }
   </ul>
-  <div class="mr-5">
+  <div class="m-3 mr-5">
     <router-outlet />
   </div>
 </div>
@@ -21,6 +21,5 @@ import { Route, RouterLink, RouterOutlet } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeComponent {
-  readonly examples = (routes.find(x => x.path === '')?.children ?? [])
-    .filter((x): x is Required<Pick<Route, 'path' | 'title'>> => !!(x.path && x.title));
+  readonly examples = exampleRoutes;
 }
