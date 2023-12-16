@@ -6,6 +6,7 @@ import { GetSignalValueInsideAsyncComponent } from './examples/get-signal-value-
 import { OutsideAssignmentComponent } from './examples/outside-assignment.component';
 import { SetSignalInsideAsyncComponent } from './examples/set-signal-inside-async.component';
 import { UndocumentedFunctionsComponent } from './examples/undocumented-functions.component';
+import { HomeContentComponent } from './home-content.component';
 
 export const routes: Routes = [
   {
@@ -13,18 +14,7 @@ export const routes: Routes = [
     component: HomeComponent,
     title: 'Home',
     children: [
-      { path: 'always-false-equality', component: AlwaysFalseEqualityComponent, title: 'Always False Equality' },
-      { path: 'extending-signals', component: ExtendingSignalsComponent, title: 'Extending Signals with Functions' },
-      { path: 'get-signal-value-inside-async', component: GetSignalValueInsideAsyncComponent, title: 'Get Signal Value Inside Async Function from Effect' },
-      { path: 'outside-assignment', component: OutsideAssignmentComponent, title: 'Using Variables Outside Scope of Computed' },
-      { path: 'set-signal-inside-async', component: SetSignalInsideAsyncComponent, title: 'Set Signal inside an async inside an Effect' },
-      { path: 'undocumented-functions', component: UndocumentedFunctionsComponent, title: 'Using Undocumented Functions' },
-      { path: '*', redirectTo: 'always-false-equality' }
-    ]
-  },
-  {
-    path: 'examples',
-    children: [
+      { path: '', component: HomeContentComponent, title: 'Home' },
       { path: 'always-false-equality', component: AlwaysFalseEqualityComponent, title: 'Always False Equality' },
       { path: 'extending-signals', component: ExtendingSignalsComponent, title: 'Extending Signals with Functions' },
       { path: 'get-signal-value-inside-async', component: GetSignalValueInsideAsyncComponent, title: 'Get Signal Value Inside Async Function from Effect' },
